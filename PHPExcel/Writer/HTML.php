@@ -378,6 +378,9 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
 		// Loop all sheets
 		$sheetId = 0;
 		foreach ($sheets as $sheet) {
+			if($sheet->getSheetState() !== 'visible') {
+				continue;
+			}
 			// Write table header
 			$html .= $this->_generateTableHeader($sheet);
 
@@ -454,7 +457,7 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
 			// Writing PDF?
 			if ($this->_isPdf) {
 				if (is_null($this->_sheetIndex) && $sheetId + 1 < $this->_phpExcel->getSheetCount()) {
-					$html .= '<div style="page-break-before:always" />';
+					/* $html .= '<div style="page-break-before:always" />'; */
 				}
 			}
 

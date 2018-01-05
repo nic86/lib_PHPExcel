@@ -64,7 +64,7 @@ class PHPExcel_Writer_PDF_mPDF extends PHPExcel_Writer_PDF_Core implements PHPEx
         $fileHandle = parent::prepareForSave($pFilename);
 
         //  Default PDF paper size
-        $paperSize = 'LETTER';    //    Letter    (8.5 in. by 11 in.)
+        $paperSize = 'A4';    //    Letter    (8.5 in. by 11 in.)
 
         //  Check for paper size and page orientation
         if (is_null($this->getSheetIndex())) {
@@ -121,6 +121,8 @@ class PHPExcel_Writer_PDF_mPDF extends PHPExcel_Writer_PDF_Core implements PHPEx
             $this->generateHTMLFooter()
         );
 
+		/* echo $this->generateHTMLHeader(FALSE) .  $this->generateSheetData() .  $this->generateHTMLFooter(false); */
+		/* exit(0); */
         //  Write to file
         fwrite($fileHandle, $pdf->Output('', 'S'));
 
